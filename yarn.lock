@@ -5189,6 +5189,10 @@ react-bootstrap@^0.31.3:
     uncontrollable "^4.1.0"
     warning "^3.0.0"
 
+react-contenteditable@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/react-contenteditable/-/react-contenteditable-2.0.5.tgz#6ec24aea705f1c10a12414676cd36742bf1dcceb"
+
 react-dev-utils@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-4.1.0.tgz#f6f436febd3f4eeb538490319b51c875c1e35bc5"
