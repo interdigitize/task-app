@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://cfassignment.herokuapp.com/Kamie/tasks')
+    axios.get('https://cfassignment.herokuapp.com/Kamie/tasks')
       .then((response) => {
         this.setState({tasks: response.data.tasks});
       })
@@ -55,7 +55,7 @@ class App extends Component {
   }
 
   saveTaskList() {
-    axios.post('http://cfassignment.herokuapp.com/Kamie/tasks', {
+    axios.post('https://cfassignment.herokuapp.com/Kamie/tasks', {
       tasks: this.state.tasks
     })
     .then((response) => {
