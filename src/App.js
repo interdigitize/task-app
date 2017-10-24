@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
 import { Navbar } from 'react-bootstrap';
 import { Grid } from 'react-bootstrap';
 import { Alert } from 'react-bootstrap';
+import './App.css';
 import TaskList from './TaskList';
 import TitleAndButtons from './TitleAndButtons';
 import axios from 'axios';
@@ -28,14 +28,14 @@ class App extends Component {
       })
       .catch((error) => {
         this.setState({alertVisible: "errorGET"});
-        console.error(error);
+        console.log(error);
       });
     this.disableSave();
   }
 
   addTask() {
     var tasks = this.state.tasks;
-    tasks.unshift('A new something to do.'); //need to add focus
+    tasks.unshift('A new something to do.'); //need to add autofocus
     this.setState({tasks: tasks});
     this.enableSave();
   }
@@ -63,7 +63,7 @@ class App extends Component {
     })
     .catch((error) => {
       this.setState({alertVisible: "errorPOST"});
-      console.error(error);
+      console.log(error);
     });
   }
 
@@ -79,7 +79,6 @@ class App extends Component {
   disableSave(){
     document.getElementById('save').disabled = true;
   }
-
 
   customAlert(style, message) {
     var alert = (
