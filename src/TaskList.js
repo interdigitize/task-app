@@ -9,7 +9,7 @@ const TaskList = (props) => {
       {props.tasks.map((task, index) =>
         <Row key={index}>
           <Col xs={12}>
-            <Task task={task} taskIndex={index} deleteTask={props.deleteTask}/>
+            <Task task={task} taskIndex={index} editTask={props.editTask} deleteTask={props.deleteTask}/>
           </Col>
         </Row>)}
     </div>

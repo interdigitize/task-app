@@ -14,8 +14,9 @@ class App extends Component {
       tasks: ['buy milk', 'walk the dog', 'task'],
       alertVisible: false,
     }
-    this.deleteTask = this.deleteTask.bind(this);
     this.addTask = this.addTask.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
+    this.editTask = this.editTask.bind(this);
     this.saveTaskList = this.saveTaskList.bind(this);
     this.dismissAlert = this.dismissAlert.bind(this);
   }
@@ -27,27 +28,33 @@ class App extends Component {
       })
       .catch((error) => {
         this.setState({alertVisible: "errorGET"});
-        console.log(error);
+        console.error(error);
       });
     this.disableSave();
   }
 
   addTask() {
-    var addTask = this.state.tasks;
-    addTask.unshift('A new something to do. Click to edit.');
-    this.setState({tasks: addTask});
+    var tasks = this.state.tasks;
+    tasks.unshift('A new something to do.'); //need to add focus
+    this.setState({tasks: tasks});
     this.enableSave();
   }
 
   deleteTask(taskIndex) {
-    var deleteTask = this.state.tasks;
-    deleteTask.splice(taskIndex, 1);
-    this.setState({tasks: deleteTask});
+    var tasks = this.state.tasks;
+    tasks.splice(taskIndex, 1);
+    this.setState({tasks: tasks});
+    this.enableSave();
+  }
+
+  editTask(editedTask, taskIndex) {
+    var tasks = this.state.tasks;
+    tasks[taskIndex] = editedTask;
+    this.setState({tasks: tasks});
     this.enableSave();
   }
 
   saveTaskList() {
-    console.log('saved!');
     axios.post('http://cfassignment.herokuapp.com/Kamie/tasks', {
       tasks: this.state.tasks
     })
@@ -60,13 +67,19 @@ class App extends Component {
     });
   }
 
+  //Enabling save this way allows for potentially resaving what has been saved,
+  //for instance if you add a task then delete it, save will still be enabled.
+  //I am choosing to do it this way and prioritize time over API calls because
+  //comparing equality of arrays, in this case persistant tasks and state tasks,
+  //before every rerender is time expensive. If you have a recommendation on how
+  //you like to handle it, I would like to hear about it.
+  enableSave() {
+    document.getElementById('save').disabled = false;
+  }
   disableSave(){
     document.getElementById('save').disabled = true;
   }
 
-  enableSave() {
-    document.getElementById('save').disabled = false;
-  }
 
   customAlert(style, message) {
     var alert = (
@@ -108,6 +121,7 @@ class App extends Component {
           <TaskList
             tasks={this.state.tasks}
             deleteTask={this.deleteTask}
+            editTask={this.editTask}
           />
         </Grid>
       </div>
