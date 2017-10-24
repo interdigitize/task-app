@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Task App",
+  "name": "Add, edit, and delete tasks",
   "icons": [
     {
       "src": "favicon.ico",
