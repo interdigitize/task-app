@@ -26,15 +26,16 @@ class App extends Component {
   // }
 
   addTask() {
-    console.log('clicked');
-    var addedTask = this.state.tasks;
-    addedTask.unshift('A new something to do. Click to edit.');
-    this.setState({tasks: addedTask});
+    var addTask = this.state.tasks;
+    addTask.unshift('A new something to do. Click to edit.');
+    this.setState({tasks: addTask});
     document.getElementById('save').disabled = false;
   }
 
-  deleteTask(theTask) {
-    console.log('delete', theTask)
+  deleteTask(taskIndex) {
+    var deleteTask = this.state.tasks;
+    deleteTask.splice(taskIndex, 1);
+    this.setState({tasks: deleteTask});
   }
 
   render() {
